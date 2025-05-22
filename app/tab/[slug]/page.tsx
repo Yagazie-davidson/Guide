@@ -13,6 +13,7 @@ import NewItemForm from "@/components/NewItemForm";
 import ListItems from "@/components/ListItems";
 import { Plus } from "lucide-react";
 import BudgetBar from "@/components/BudgetBar";
+import Link from "next/link";
 export type Tab = {
 	name: string;
 	budget: string;
@@ -36,8 +37,13 @@ const Page = () => {
 	const budgetLeft = parseFloat(tab.budget) - moneySpentSoFar;
 	console.log({ moneySpentSoFar, budgetLeft });
 	return (
-		<div className="py-16 bg-[url(/white-crumpled.jpg)] bg-cover bg-center flex flex-col max-w-[400px] justify- items-center h-screen w-full">
+		<div className="pb-16 pt-12 bg-[url(/white-crumpled.jpg)] bg-cover bg-center flex flex-col max-w-[400px] justify- items-center h-screen w-full">
 			{/* <h2 className="font-normal text-4xl"> {formatCurrency(tab.budget)}</h2> */}
+			<div className="flex items-center justify-start w-full px-7 pb-10">
+				<Link href={"/"} className="text-[14px] text-left underline">
+					Back
+				</Link>
+			</div>
 
 			<p className="text-[14px]">{params.slug.replace(/%20/g, " ")}</p>
 			<div className="w-full px-7">
