@@ -18,6 +18,7 @@ export type Tab = {
 	name: string;
 	budget: string;
 	items: Array<{
+		id: string;
 		itemName: string;
 		cost: string;
 		quantity?: string;
