@@ -16,19 +16,18 @@ export const metadata: Metadata = {
 	title: "Goat",
 	description: "Goat",
 	manifest: "/manifest.json",
-	themeColor: "#000000",
 	appleWebApp: {
 		capable: true,
 		statusBarStyle: "default",
 		title: "Next.js PWA",
 		startupImage: ["/apple-splash-1125-2436.png"],
 	},
-	viewport: {
-		width: "device-width",
-		initialScale: 1,
-		maximumScale: 1,
-		userScalable: false,
-	},
+	// viewport: {
+	// 	width: "device-width",
+	// 	initialScale: 1,
+	// 	maximumScale: 1,
+	// 	userScalable: false,
+	// },
 	other: {
 		"apple-mobile-web-app-capable": "yes",
 		"apple-mobile-web-app-status-bar-style": "default",

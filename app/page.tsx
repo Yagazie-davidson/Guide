@@ -13,14 +13,22 @@ import { useRouter } from "next/navigation";
 import { formatCurrency } from "@/lib/utils";
 // import { Tab } from "./tab/[slug]/page";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Home() {
 	const router = useRouter();
-	const tabData = localStorage.getItem("tab");
-	const tab = tabData
-		? JSON.parse(tabData)
-		: { name: "", budget: "", items: [] };
-	console.log({ tab });
+	const [tab, setTab] = useState<
+		{ name: string; budget: string; items: [] } | undefined
+	>();
+	useEffect(() => {
+		const storedTab = localStorage.getItem("tab");
+		const tab = storedTab
+			? JSON.parse(storedTab)
+			: { name: "", budget: "", items: [] };
+
+		setTab(tab);
+	}, []);
+
 	const handleBudgetInput = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const input = event.target;
 		input.value = formatCurrency(input.value);
@@ -95,7 +103,7 @@ export default function Home() {
 						</DialogHeader>
 					</DialogContent>
 				</Dialog>
-				{tab && (
+				{tab?.name && (
 					<Link
 						className="hover:underline transition-all duration-200"
 						href={`/tab/${encodeURIComponent(tab.name)}`}
