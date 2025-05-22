@@ -2,7 +2,6 @@
 	"name": "Guide",
 	"short_name": "Guide",
 	"description": "Guide is a personal finance app that helps you manage your budget and track your expenses.",
-	"theme_color": "#ffffff",
 	"background_color": "#ffffff",
 	"display": "standalone",
 	"orientation": "portrait",
