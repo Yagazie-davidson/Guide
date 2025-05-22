@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import ".././globals.css";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -7,10 +6,11 @@ import localFont from "next/font/local";
 const dejavu = localFont({
 	src: "../.././public/DejaVuSansMono.ttf",
 });
-export const metadata: Metadata = {
-	title: "Budget by Goat",
-	description: "Never go over your budget again",
-};
+// export const metadata: Metadata = {
+// 	title: "Budget by Goat",
+// 	description: "Never go over your budget again",
+// 	manifest: "/manifest.json",
+// };
 
 export default function RootLayout({
 	children,
