@@ -9,6 +9,11 @@ export default function ListItems({ tab, moneySpentSoFar, budgetLeft }: Props) {
 	return (
 		<ul className="w-full px-10 flex flex-col space-y-3">
 			<li className="flex text-[14px] justify-between space-x-2 items-center mt-2">
+				<p>Name:</p>
+
+				<p>{tab.name}</p>
+			</li>
+			<li className="flex text-[14px] justify-between space-x-2 items-center -mt-2">
 				<p>Budget:</p>
 
 				<p>{formatCurrency(`${tab.budget}`)}</p>
