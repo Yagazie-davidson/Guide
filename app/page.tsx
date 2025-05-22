@@ -1,5 +1,5 @@
 "use client";
-import { Plus } from "lucide-react";
+import { ChevronRight, Plus } from "lucide-react";
 import {
 	Dialog,
 	DialogContent,
@@ -11,10 +11,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { formatCurrency } from "@/lib/utils";
+// import { Tab } from "./tab/[slug]/page";
+import Link from "next/link";
 
 export default function Home() {
 	const router = useRouter();
-
+	const tabData = localStorage.getItem("tab");
+	const tab = tabData
+		? JSON.parse(tabData)
+		: { name: "", budget: "", items: [] };
+	console.log({ tab });
 	const handleBudgetInput = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const input = event.target;
 		input.value = formatCurrency(input.value);
@@ -40,16 +46,16 @@ export default function Home() {
 	};
 
 	return (
-		<div className="border border-red-500 flex flex-col max-w-[500px] justify-center items-center h-screen w-full">
-			<div>
+		<div className="flex flex-col max-w-[500px] justify-center items-center h-screen w-full">
+			<div className="flex flex-col items-center">
 				<Dialog>
 					<DialogTrigger>
-						<button className="flex bg-white text-black rounded-md p-2.5 items-center justify-center cursor-pointer">
-							<span>New Tab</span>
+						<button className="flex bg-black text-white rounded-md p-2.5 items-center justify-center cursor-pointer">
+							<span>Create new Tab</span>
 							<Plus size={15} />
 						</button>
 					</DialogTrigger>
-					<DialogContent className="bg-black">
+					<DialogContent className="bg-white text-black">
 						<DialogHeader>
 							<DialogTitle>Create a new tab</DialogTitle>
 							<DialogDescription>
@@ -80,7 +86,7 @@ export default function Home() {
 									</div>
 									<button
 										type="submit"
-										className="flex  w-fit bg-white text-black rounded-md p-2.5 items-center justify-center cursor-pointer"
+										className="flex  w-fit bg-black text-white rounded-md p-2.5 items-center justify-center cursor-pointer"
 									>
 										Create
 									</button>
@@ -89,6 +95,17 @@ export default function Home() {
 						</DialogHeader>
 					</DialogContent>
 				</Dialog>
+				{tab && (
+					<Link
+						className="hover:underline transition-all duration-200"
+						href={`/tab/${encodeURIComponent(tab.name)}`}
+					>
+						<button className="flex mt-10 rounded-md  items-center justify-center cursor-pointer">
+							<span>Resume last tab</span>
+							<ChevronRight size={15} />
+						</button>
+					</Link>
+				)}
 			</div>
 		</div>
 	);

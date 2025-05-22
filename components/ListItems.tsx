@@ -6,9 +6,23 @@ import React from "react";
 type Props = { tab: Tab; moneySpentSoFar: number; budgetLeft: number };
 
 export default function ListItems({ tab, moneySpentSoFar, budgetLeft }: Props) {
+	const removeItem = (id: string) => {
+		const tabData = localStorage.getItem("tab");
+		if (tabData) {
+			const tab: Tab = JSON.parse(tabData);
+			const updatedItems = tab.items.filter(item => item.id !== id);
+			tab.items = updatedItems;
+			localStorage.setItem("tab", JSON.stringify(tab));
+		}
+	};
 	return (
 		<ul className="w-full px-10 flex flex-col space-y-3">
 			<li className="flex text-[14px] justify-between space-x-2 items-center mt-2">
+				<p>Name:</p>
+
+				<p>{tab.name}</p>
+			</li>
+			<li className="flex text-[14px] justify-between space-x-2 items-center -mt-2">
 				<p>Budget:</p>
 
 				<p>{formatCurrency(`${tab.budget}`)}</p>
@@ -23,6 +37,7 @@ export default function ListItems({ tab, moneySpentSoFar, budgetLeft }: Props) {
 				<p>Qty</p>
 
 				<p>Amt(NGN)</p>
+				<p></p>
 			</li>
 			{tab.items.length > 0 ? (
 				tab.items.map(item => (
@@ -38,6 +53,9 @@ export default function ListItems({ tab, moneySpentSoFar, budgetLeft }: Props) {
 								`${parseFloat(item.cost) * parseFloat(item.quantity || "1")}`
 							)}
 						</p>
+						<form onSubmit={() => removeItem(item.id)}>
+							<button type="submit">x</button>
+						</form>
 					</li>
 				))
 			) : (

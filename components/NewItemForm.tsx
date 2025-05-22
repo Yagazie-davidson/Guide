@@ -24,6 +24,7 @@ const NewItemForm = ({ budgetLeft }: props) => {
 		const itemName = formData.get("itemName") as string;
 		const cost = formData.get("cost") as string;
 		const quantity = formData.get("quantity") as string;
+		const id = Math.random().toString(36).substring(2, 15);
 		if (
 			!(
 				parseFloat(cost.replace(/₦/g, "").replace(/,/g, "")) *
@@ -32,6 +33,7 @@ const NewItemForm = ({ budgetLeft }: props) => {
 			)
 		) {
 			tab?.items.push({
+				id,
 				itemName,
 				cost: cost.replace(/₦/g, "").replace(/,/g, ""),
 				quantity,
