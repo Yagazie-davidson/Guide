@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import "./globals.css";
+import ".././globals.css";
 import { Toaster } from "@/components/ui/sonner";
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
-});
+import localFont from "next/font/local";
 
+const dejavu = localFont({
+	src: "../.././public/DejaVuSansMono.ttf",
+});
 export const metadata: Metadata = {
 	title: "Budget by Goat",
 	description: "Never go over your budget again",
@@ -20,13 +19,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body
-				className={`${geistSans.variable} antialiased flex justify-center w-full`}
-			>
-				{/* <div className="border border-red-500 flex  flex-col max-w-[500px] w-full"> */}
+			<body className={`${dejavu.className} flex justify-center w-full`}>
 				<Toaster className="bg-white text-black" />
 				{children}
-				{/* </div> */}
 			</body>
 		</html>
 	);
